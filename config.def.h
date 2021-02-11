@@ -11,7 +11,7 @@ static       int smartgaps            = 0;        /* 1 means no gaps with only o
 static const int swallowfloating      = 0;        /* 1 means swallow floating windows by default */
 static const int showbar              = 1;        /* 0 means no bar */
 static const int topbar               = 1;        /* 0 means bottom bar */
-static const char *fonts[]            = { "JetBrainsMonoMedium Nerd Font:size=12" };
+static const char *fonts[]            = { "JetBrainsMono Nerd Font:size=11" };
 static const char dmenufont[]         = "monospace:size=10";
 static const char background[]        = "#2e3440";
 static const char black[]             = "#3b4252";
@@ -33,7 +33,7 @@ static const unsigned int alphas[][3] = {
 };
 
 static const char *const autostart[] = {
-    "picom", "-b", NULL,
+    "compton", "-b", NULL,
     "nitrogen", "--restore", NULL,
     "dunst", NULL,
     "redshift", NULL,
@@ -77,7 +77,7 @@ static const Layout layouts[] = {
     { "###",      nrowgrid },
     { "---",      horizgrid },
     { ":::",      gaplessgrid },
-    { "|M|",      centeredmaster },
+    { "恵",      centeredmaster },
     { ">M>",      centeredfloatingmaster },
 	{ "><>",      NULL },    /* no layout function means floating behavior */
     { NULL,       NULL },    /* the patch has this here for some reason. */
