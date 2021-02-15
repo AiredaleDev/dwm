@@ -21,9 +21,9 @@ static const char blue[]              = "#81a1c1";
 static const unsigned int baralpha    = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
+	/*               fg          bg          border   */
 	[SchemeNorm] = { foreground, background, black },
-	[SchemeSel]  = { blue,      black,       blue  },
+	[SchemeSel]  = { blue,       background, blue  },
 };
 
 static const unsigned int alphas[][3] = {
@@ -35,6 +35,7 @@ static const unsigned int alphas[][3] = {
 static const char *const autostart[] = {
     "compton", "-b", NULL,
     "nitrogen", "--restore", NULL,
+    "slstatus", NULL,
     "dunst", NULL,
     "redshift", NULL,
     NULL /* terminate */
@@ -66,20 +67,20 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
+	{ "﬿",      tile },    /* first entry is default */
 	{ "[M]",      monocle },
     { "[@]",      spiral },
-    { "[\\]",     dwindle },
+    { "侀",     dwindle },
     { "H[]",      deck },
     { "TTT",      bstack },
     { "===",      bstackhoriz},
-    { "HHH",      grid },
+    { "﩯",      grid },
     { "###",      nrowgrid },
     { "---",      horizgrid },
     { ":::",      gaplessgrid },
     { "恵",      centeredmaster },
     { ">M>",      centeredfloatingmaster },
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "",      NULL },    /* no layout function means floating behavior */
     { NULL,       NULL },    /* the patch has this here for some reason. */
 };
 
