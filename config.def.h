@@ -24,12 +24,14 @@ static const char *colors[][3]      = {
 	/*               fg          bg          border   */
 	[SchemeNorm] = { foreground, background, black },
 	[SchemeSel]  = { blue,       background, blue  },
+    [SchemeHid]  = { black,      background, blue  },
 };
 
 static const unsigned int alphas[][3] = {
     /*              fg       bg        border */
     [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
     [SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+    [SchemeHid]  = { OPAQUE, baralpha, borderalpha },
 };
 
 static const char *const autostart[] = {
@@ -101,6 +103,9 @@ static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufon
 static const char *termcmd[]    = { "alacritty", NULL };
 static const char *roficmd[]    = { "rofi", "-show", "drun", NULL };
 static const char *browsercmd[] = { "qutebrowser" };
+static const char *voldown[] = { "pactl", "set-sink-volume", "alsa_output.pci-0000_00_1f.3.analog-stereo", "-3%", NULL };
+static const char *volup[] = { "pactl", "set-sink-volume", "alsa_output.pci-0000_00_1f.3.analog-stereo", "+3%", NULL };
+static const char *togglemute[] = { "pactl", "set-sink-mute", "alsa_output.pci-0000_00_1f.3.analog-stereo", "toggle", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -155,6 +160,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { 0,         XF86XK_AudioLowerVolume,      spawn,          {.v = voldown} },
+    { 0,         XF86XK_AudioRaiseVolume,      spawn,          {.v = volup} },
+    { 0,         XF86XK_AudioMute,             spawn,          {.v = togglemute} },
 };
 
 /* button definitions */
@@ -163,6 +171,7 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+    { ClkWinTitle,          0,              Button1,        togglewin,      {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
